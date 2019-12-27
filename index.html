@@ -124,7 +124,7 @@
 
       window.onload = async () => {
         const response = await fetch(
-          "http://api.openweathermap.org/data/2.5/weather?q=Amiens,France&units=metric&appid=e5b292ae2f9dae5f29e11499c2d82ece"
+          "https://api.openweathermap.org/data/2.5/weather?q=Amiens,France&units=metric&appid=e5b292ae2f9dae5f29e11499c2d82ece"
         );
         if (response.ok) {
           const json = await response.json();
