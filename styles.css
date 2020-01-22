@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
 :root {
-  --bg: #1f0322;
+  --bg: #0b0b0e;
   --fg: #f0bcd4;
   --secondaryFg: #dfdee2;
-  --containerBg: #8a1c7c;
+  --containerBg: #0b0b0e;
   --searchBg: var(--containerBg);
   --scrollbarColor: #c0bdc5;
 }
@@ -68,6 +68,7 @@ body {
   color: var(--fg);
   text-align: center;
 }
+
 .inline {
   display: inline-block;
 }
@@ -75,9 +76,9 @@ body {
 .bookmark-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  width: 50%;
-  margin: 1em 0em;
+  justify-content: space-between;
+  width: 60%;
+  margin: 6em 0em;
 }
 
 @media only screen and (max-width: 960px) {
@@ -89,8 +90,13 @@ body {
   }
   .container > .bookmark-container {
     flex-direction: column;
-    width: 60%;
+    width: 70%;
   }
+
+  .bookmark-container {
+    margin-top: 1em;
+  }
+
   .bookmark-container > .bookmark-set {
     width: auto;
     margin: 1em 0em;
@@ -100,13 +106,14 @@ body {
 .bookmark-set {
   padding: 1em;
   background-color: var(--containerBg);
-  border-radius: 3px;
+  border-radius: 8px;
   font-family: 'Roboto Mono';
   font-size: 0.85rem;
-  width: 25%;
+  width: 20%;
   height: 12em;
   margin: 0em 0.5em;
   box-sizing: border-box;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0), -4px -4px 8px rgba(255, 255, 255, 0.1);
 }
 
 .bookmark-inner-container {
