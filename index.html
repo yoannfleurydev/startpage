@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="styles.css" />
-    <title>Home</title>
+    <link rel="icon" href="/favicon-32x32.png" type="image/png" />
+    <title>YoannFleuryDev's StartPage</title>
   </head>
   <body>
     <div id="search">
@@ -27,64 +28,107 @@
       </div>
       <div class="bookmark-container">
         <div class="bookmark-set">
-          <div class="bookmark-title">Daily</div>
+          <div class="bookmark-title">
+            <span role="img" aria-label="Calendar">📅</span> Daily
+          </div>
           <div class="bookmark-inner-container">
-            <a class="bookmark" href="https://gmail.google.com/" target="_blank"
+            <a
+              class="bookmark"
+              href="https://gmail.google.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               >Gmail</a
             >
-            <a class="bookmark" href="https://github.com/" target="_blank"
+            <a
+              class="bookmark"
+              href="https://github.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               >GitHub</a
             >
             <a
               class="bookmark"
               href="https://calendar.google.com/"
               target="_blank"
+              rel="noopener noreferrer"
               >Calendar</a
             >
           </div>
         </div>
         <div class="bookmark-set">
-          <div class="bookmark-title">Media</div>
+          <div class="bookmark-title">
+            <span role="img" aria-label="TV">📺</span> Media
+          </div>
           <div class="bookmark-inner-container">
-            <a class="bookmark" href="https://youtube.com" target="_blank"
+            <a
+              class="bookmark"
+              href="https://youtube.com"
+              target="_blank"
+              rel="noopener noreferrer"
               >Youtube</a
             >
-            <a class="bookmark" href="https://netflix.com" target="_blank"
+            <a
+              class="bookmark"
+              href="https://netflix.com"
+              target="_blank"
+              rel="noopener noreferrer"
               >Netflix</a
             >
-            <a href="http://twitch.tv" class="bookmark" target="_blank"
+            <a
+              href="http://twitch.tv"
+              class="bookmark"
+              target="_blank"
+              rel="noopener noreferrer"
               >Twitch</a
             >
           </div>
         </div>
         <div class="bookmark-set">
-          <div class="bookmark-title">Reddit</div>
+          <div class="bookmark-title">
+            <span role="img" aria-label="Orange Circle">🟠</span> Reddit
+          </div>
           <div class="bookmark-inner-container">
             <a
               class="bookmark"
               href="https://reddit.com/r/battlestations"
               target="_blank"
+              rel="noopener noreferrer"
               >/r/battlestations</a
             >
             <a
               class="bookmark"
               href="https://reddit.com/r/unixporn"
               target="_blank"
+              rel="noopener noreferrer"
               >/r/unixporn</a
             >
 
-            <a class="bookmark" href="https://reddit.com/r/vim" target="_blank"
+            <a
+              class="bookmark"
+              href="https://reddit.com/r/vim"
+              target="_blank"
+              rel="noopener noreferrer"
               >/r/vim</a
             >
           </div>
         </div>
         <div class="bookmark-set">
-          <div class="bookmark-title">Social</div>
+          <div class="bookmark-title">
+            <span role="img" aria-label="Computer Scientist">👩‍💻</span> Social
+          </div>
           <div class="bookmark-inner-container">
-            <a class="bookmark" href="https://twitter.com" target="_blank"
+            <a
+              class="bookmark"
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
               >Twitter</a
             >
-            <a class="bookmark" href="https://linkedin.com" target="_blank"
+            <a
+              class="bookmark"
+              href="https://linkedin.com"
+              target="_blank"
+              rel="noopener noreferrer"
               >Linkedin</a
             >
           </div>
@@ -93,11 +137,16 @@
     </div>
 
     <script>
+      const dateTimeFormatter = new Intl.DateTimeFormat("en-GB", {
+        timeStyle: "medium",
+      });
+
       function closeSearch() {
         document.getElementById("search-field").value = "";
         document.getElementById("search-field").blur();
         document.getElementById("search").style.display = "none";
       }
+
       // Search on enter key event
       function search(e) {
         if (e.keyCode == 13) {
@@ -106,26 +155,18 @@
           closeSearch();
         }
       }
+
       // Get current time and format
       function getTime() {
-        const date = new Date(),
-          min = date.getMinutes(),
-          sec = date.getSeconds(),
-          hour = date.getHours();
-        return (
-          "" +
-          (hour < 10 ? "0" + hour : hour) +
-          ":" +
-          (min < 10 ? "0" + min : min) +
-          ":" +
-          (sec < 10 ? "0" + sec : sec)
-        );
+        const date = new Date();
+        return dateTimeFormatter.format(date);
       }
 
       window.onload = async () => {
         const response = await fetch(
           "https://api.openweathermap.org/data/2.5/weather?q=Amiens,France&units=metric&appid=e5b292ae2f9dae5f29e11499c2d82ece"
         );
+
         if (response.ok) {
           const json = await response.json();
 
@@ -142,11 +183,13 @@
           document.getElementById("clock").innerHTML = getTime();
         }, 100);
       };
-      document.addEventListener("keydown", event => {
+
+      document.addEventListener("keydown", (event) => {
         if (event.keyCode == 32) {
           // Spacebar code to open search
           document.getElementById("search").style.display = "flex";
           document.getElementById("search-field").focus();
+          event.stopPropagation();
         } else if (event.keyCode == 27) {
           // Esc to close search
           closeSearch();
